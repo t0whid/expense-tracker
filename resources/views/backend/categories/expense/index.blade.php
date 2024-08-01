@@ -1,5 +1,5 @@
 @extends('backend.layouts.app')
-@section('title', 'Categories')
+@section('title', 'Expense Categories')
 
 @section('styles')
 <!-- DataTables CSS -->
@@ -35,27 +35,27 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Categories</h1>
+                <h1>Expense Categories</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-                    <li class="breadcrumb-item active">Categories</li>
+                    <li class="breadcrumb-item active">Expense Categories</li>
                 </ol>
             </div>
         </div>
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Categories List</h3>
+                <h3 class="card-title">Expense Categories List</h3>
                 <div class="card-tools">
-                    <a href="{{ route('categories.create') }}" class="btn btn-success">Add New Category</a>
+                    <a href="{{ route('categories.create') }}" class="btn btn-success">Add Expense Category</a>
                 </div>
             </div>
             <div class="card-body">
                 <table id="categoriesTable" class="table table-bordered table-hover">
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <th>#</th>
                             <th>Name</th>
                             <th>Description</th>
                             <th>Status</th>
@@ -65,7 +65,7 @@
                     <tbody>
                         @foreach ($categories as $category)
                         <tr>
-                            <td>{{ $category->id }}</td>
+                            <td>{{ $loop->iteration }}</td>
                             <td>{{ $category->name }}</td>
                             <td>{{ $category->description }}</td>
                             <td>

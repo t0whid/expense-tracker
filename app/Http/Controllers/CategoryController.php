@@ -11,12 +11,12 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::where('user_id', Auth::id())->get(); // Fetch categories for the authenticated user
-        return view('backend.categories.index', compact('categories')); // Pass data to the view
+        return view('backend.categories.expense.index', compact('categories')); // Pass data to the view
     }
 
     public function create()
     {
-        return view('backend.categories.create'); // Return the create form view
+        return view('backend.categories.expense.create'); // Return the create form view
     }
 
     public function store(Request $request)
@@ -43,7 +43,7 @@ class CategoryController extends Controller
             return redirect()->route('categories.index')->with('error', 'Unauthorized access.');
         }
 
-        return view('backend.categories.edit', compact('category')); // Return the edit form view
+        return view('backend.categories.expense.edit', compact('category')); // Return the edit form view
     }
 
     public function update(Request $request, Category $category)
@@ -61,7 +61,7 @@ class CategoryController extends Controller
         $category->update([
             'name' => $request->name,
             'description' => $request->description,
-        ]); 
+        ]);
 
         return redirect()->route('categories.index')->with('success', 'Category updated successfully.');
     }
@@ -77,7 +77,7 @@ class CategoryController extends Controller
 
         $category->status = !$category->status;
         $category->save();
-    
+
         return redirect()->route('categories.index')->with('success', 'Status updated successfully.');
     }
 
